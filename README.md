@@ -1,327 +1,159 @@
-🍽️ AI-Powered Food Order WhatsApp Chatbot
-Full-Stack Application — Spring Boot Backend + React (Vite) Admin Dashboard
+# 🍽️ AI-Powered Food Order WhatsApp Chatbot
 
-(WhatsApp Cloud API • Gemini AI • Razorpay Payments • WebSockets • Real-Time Dashboard)
+A full-stack restaurant automation system that allows customers to place food orders via **WhatsApp**, with AI-assisted responses, payment integration, and a real-time admin dashboard. Built using **React.js**, **Spring Boot**, **Oracle/MySQL Database**, **Gemini AI**, **Razorpay**, and **WebSockets**.
 
-📌 Overview
+---
 
-This project is an AI-Powered Food Ordering System over WhatsApp, featuring:
+## 📦 Tech Stack
 
-Smart chatbot using WhatsApp Cloud API
+| Layer        | Technology |
+|--------------|------------|
+| Frontend     | React.js (Vite), Tailwind CSS, Recharts, STOMP.js |
+| Backend      | Spring Boot, Spring Data JPA, WebSocket, RestTemplate |
+| Database     | Oracle SQL / MySQL |
+| AI / LLM     | Google Gemini API |
+| Payments     | Razorpay Payment Links + Webhooks |
+| Realtime     | WebSocket (STOMP + SockJS) |
 
-AI-powered conversation handling using Gemini 2.5 Flash
+---
 
-Secure payments using Razorpay Payment Links + Webhooks
+## ✨ Features
 
-Real-time order dashboard for restaurant staff using React + WebSockets (STOMP + SockJS)
+- 🤖 AI-powered WhatsApp chatbot for food ordering  
+- 🍛 View menu, choose items, quantities, and payment method  
+- 🔁 Intelligent conversational flow with multi-step state management  
+- 🧠 Gemini AI for natural responses + business insights  
+- 💳 Razorpay dynamic payment link generation  
+- 🛠️ Payment confirmation via webhook (success & failure handling)  
+- 📡 Real-time admin dashboard (WebSocket live updates)  
+- 🔔 New order sound alerts + toast notifications  
+- 📊 Analytics: revenue, order count, payment split, popular items  
+- 📂 Menu management (add / edit / delete / toggle availability)  
+- 📄 CSV export for finance & order reports  
 
-Menu management, analytics, AI business insights, and full admin panel
+---
+
+## 🚀 Setup Instructions
+
+### 🔧 Backend (Spring Boot + Oracle/MySQL)
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/BharatBhagyajyoti/AI-Powered-Food-Order-WhatsApp-Chat-Bot.git
+   cd AI-Powered-WhatsApp-ChatBot/backend
+   ```
 
-Oracle / MySQL backend using Spring Boot, JPA, Hibernate
+2. Configure database in `application.properties`:
+   ```properties
+   spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   # or MySQL
+   # spring.datasource.url=jdbc:mysql://localhost:3306/restaurantdb
+   ```
 
-This is a complete production-grade system that automates restaurant order management end-to-end.
+3. Add your API keys:
+   ```properties
+   whatsapp.phoneNumberId=your_phone_number_id
+   whatsapp.accessToken=your_whatsapp_access_token
 
-🏗️ Monorepo Structure
-/AI-Powered-WhatsApp-ChatBot
-│
-├── backend/                   # Spring Boot application
-│   ├── src/main/java/
-│   ├── src/main/resources/
-│   ├── application.properties  
-│   ├── pom.xml
-│
-└── frontend/                  # React + Vite admin dashboard
-    ├── src/
-    ├── public/
-    ├── index.html
-    ├── package.json
+   razorpay.key_id=your_key_id
+   razorpay.key_secret=your_key_secret
 
-⚙️ Tech Stack
-Backend
-| Feature       | Technologies                         |
-| ------------- | ------------------------------------ |
-| API Framework | Spring Boot (Java 17+)               |
-| ORM           | JPA, Hibernate                       |
-| Database      | Oracle / MySQL                       |
-| Messaging     | WebSocket, STOMP, SockJS             |
-| AI            | Gemini 2.5 Flash API                 |
-| Payment       | Razorpay Java SDK + Payment Webhooks |
-| REST Client   | RestTemplate                         |
+   google.api.key=your_gemini_api_key
+   ```
 
+4. Run the backend:
+   ```bash
+   mvn spring-boot:run
+   ```
 
+5. Expose backend publicly (required for WhatsApp & Razorpay):
+   ```bash
+   ngrok http 8080
+   ```
 
-Frontend
-| Feature       | Technologies      |
-| ------------- | ----------------- |
-| Framework     | React JS (Vite)   |
-| Styling       | Tailwind CSS      |
-| Charts        | Recharts          |
-| Notifications | React-Toastify    |
-| Real-time     | SockJS + STOMP.js |
-| Icons         | Lucide-React      |
-| Files         | react-csv         |
+---
 
+### 💻 Frontend (React + Vite)
 
-🚀 Key Features
-✅ WhatsApp Chatbot
+1. Navigate to the frontend:
+   ```bash
+   cd ../Frontend(Resturant Owner Side) - ChatBot
+   cd frontEnd_OwnerSide
+   ```
 
-. Conversational ordering flow
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-. Menu queries
+3. Start development server:
+   ```bash
+   npm run dev
+   ```
 
-. Order tracking using:
-. status <OrderID>
+4. Open `http://localhost:5173` in your browser.
 
-. Context-aware AI behavior
+---
 
-. Auto session expiry (10 minutes)
+## 🔒 Why Custom Implementation Instead of Low-Code Tools?
 
-. Cancel order anytime using “Cancel”
+This system demonstrates full-stack engineering with:
 
-✅ Gemini AI Integration
+- End-to-end custom control  
+- Scalable backend architecture  
+- Flexible API integrations (WhatsApp, Gemini, Razorpay)  
+- Better performance and freedom than n8n / Zapier workflows  
 
-Intelligent replies
+---
 
-Menu-aware AI
+## 🧠 AI Behavior Notes
 
-Strict rules to avoid hallucinations
+- Gemini responds only within defined restaurant rules  
+- AI never hallucinates menu items  
+- Conversation states ensure controlled ordering flow  
+- AI insights use real revenue, popularity, and history data  
 
-Friendly conversational tone
+---
 
-Dynamic AI insights for admin dashboard
-(Based on analytics + real data)
+## 📂 Project Structure
 
-✅ Razorpay Payment Integration
+```
+├── backend/
+│   ├── controller/
+│   ├── service/
+│   ├── model/
+│   ├── repository/
+│   ├── config/
+│   └── application.properties
+├── frontend/
+│   ├── components/
+│   ├── pages/
+│   ├── charts/
+│   ├── websocket/
+│   └── App.jsx
+```
 
-Dynamic payment link generation
+---
 
-Webhook-based confirmation
+## 🧪 Future Improvements
 
-Duplicate webhook protection
+- Admin authentication (Spring Security)  
+- Multi-branch restaurant support  
+- WhatsApp template messages (media/images)  
+- Delivery partner tracking integration  
+- Mobile app version for admins  
 
-Auto payment failure handling
+---
 
-Automatic WhatsApp notification on success/failure
+## 🙏 Acknowledgements
 
-✅ Admin Dashboard (React)
+- WhatsApp Cloud API  
+- Google Gemini  
+- Razorpay Developer APIs  
+- Spring Boot  
+- React.js  
 
-Real-time live incoming orders
+---
 
-Order details modal
-
-Status updates (Pending → Accepted → Preparing → Completed)
-
-Monthly analytics table
-
-Payment finance statistics
-
-CSV export
-
-AI business insights panel
-
-Menu management (add/edit/delete/toggle availability)
-
-✅ Real-Time WebSocket Updates
-
-No refresh required
-
-Instant updates across all admin panels
-
-Notification sound + toast alert
-
-Efficient STOMP messaging over SockJS
-
-🧠 System Architecture
-
-(Based on diagrams from documentation page images )
-
-1. User Flow
-
-Customer messages restaurant on WhatsApp
-
-Webhook → Spring Boot receives message
-
-Gemini AI or order flow responds
-
-Payment link generated if needed
-
-Webhook from Razorpay updates backend
-
-Backend broadcasts order updates
-
-Admin dashboard updates instantly via WebSocket
-
-📞 WhatsApp Cloud API Configuration
-Set in application.properties:
-whatsapp.phoneNumberId=YOUR_PHONE_NUMBER_ID
-whatsapp.accessToken=YOUR_PERMANENT_ACCESS_TOKEN
-
-Webhook URL example:
-https://<your-public-url>/webhook
-
-
-Use ngrok or Cloudflare Tunnel to expose local server.
-
-🔑 Required Third-Party Keys
-Service	What You Need	Where to Get
-WhatsApp Cloud API	Phone Number ID, Permanent Token	Meta Developer Portal
-Razorpay	Key ID, Key Secret, Webhook URL	Razorpay Dashboard
-Gemini AI	API Key	Google AI Studio
-⚙️ Backend Setup (Spring Boot)
-1. Go to backend directory
-cd backend
-
-2. Update database configs
-spring.datasource.url=...
-spring.datasource.username=...
-spring.datasource.password=...
-spring.jpa.hibernate.ddl-auto=update
-
-3. Run application
-mvn spring-boot:run
-
-4. Start ngrok/cloudflare tunnel
-ngrok http 8080
-
-🎨 Frontend Setup (React Vite)
-1. Go to frontend directory
-cd frontend
-
-2. Install dependencies
-npm install
-
-3. Start dev server
-npm run dev
-
-Frontend runs on:
-http://localhost:5173
-
-📡 WebSocket Endpoints
-Backend
-/ws              # WebSocket endpoint
-/topic/orders    # Broadcast channel
-
-Frontend (React)
-const socket = new SockJS("http://localhost:8080/ws");
-const stomp = Stomp.over(socket);
-
-stomp.connect({}, () => {
-   stomp.subscribe("/topic/orders", msg => {
-      const data = JSON.parse(msg.body);
-      setOrders(prev => [data, ...prev]);
-   });
-});
-
-💳 Razorpay Webhook
-
-Set your webhook to:
-
-https://your-domain/api/payment/callback
-
-
-Handles:
-
-payment_link.paid
-
-payment_link.failed
-
-payment.captured
-
-payment.failed
-
-📊 Admin Dashboard Features
-Analytics
-
-Monthly summary
-
-Revenue, order count
-
-Avg Order Value
-
-Cash/UPI/Card split
-
-AI insights generated by Gemini
-
-Menu Management
-
-Add / Edit / Delete items
-
-Toggle item availability
-
-Auto-refresh UI
-
-Search filter
-
-Toast notifications
-
-🧩 Folder Structure (Detailed)
-Backend
-backend/
- ├── controller/
- ├── service/
- ├── repository/
- ├── model/
- ├── config/
- ├── WebSocketConfig.java
- ├── RazorpayConfig.java
- ├── GoogleApiConfig.java
- └── WhatsAppController.java
-
-Frontend
-frontend/
- ├── src/
- │   ├── components/
- │   ├── pages/
- │   ├── charts/
- │   ├── websocket/
- │   ├── utils/
- │   ├── App.jsx
- │   └── main.jsx
- └── public/
-
-🧪 Testing Your Bot
-
-Run backend
-
-Run frontend
-
-Open WhatsApp → message your WhatsApp Business number
-
-Try the following:
-
-Order
-Cancel
-2 biryani
-status 41
-menu
-
-
-Make a payment and watch dashboard update in real-time.
-
-
-
-🧠 Why Custom Build?
-
-→ From PDF “Motivation for Custom Build” (Page 1)
-
-Full control over backend & AI logic
-
-Enterprise-grade scalability
-
-No limits like n8n/Zapier
-
-Security & data ownership
-
-Better developer learning & depth
-
-Avoids vendor lock-in
-
-🤝 Contributing
-
-PRs and feature improvements are welcome!
-
-📄 License
-
-
-
-This project is fully open for educational and portfolio use.
