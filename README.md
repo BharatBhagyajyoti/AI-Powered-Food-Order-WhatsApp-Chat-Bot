@@ -1,0 +1,318 @@
+🍽️ AI-Powered Food Order WhatsApp Chatbot
+Full-Stack Application — Spring Boot Backend + React (Vite) Admin Dashboard
+
+(WhatsApp Cloud API • Gemini AI • Razorpay Payments • WebSockets • Real-Time Dashboard)
+
+📌 Overview
+
+This project is an AI-Powered Food Ordering System over WhatsApp, featuring:
+
+Smart chatbot using WhatsApp Cloud API
+
+AI-powered conversation handling using Gemini 2.5 Flash
+
+Secure payments using Razorpay Payment Links + Webhooks
+
+Real-time order dashboard for restaurant staff using React + WebSockets (STOMP + SockJS)
+
+Menu management, analytics, AI business insights, and full admin panel
+
+Oracle / MySQL backend using Spring Boot, JPA, Hibernate
+
+This is a complete production-grade system that automates restaurant order management end-to-end.
+
+🏗️ Monorepo Structure
+/AI-Powered-WhatsApp-ChatBot
+│
+├── backend/                   # Spring Boot application
+│   ├── src/main/java/
+│   ├── src/main/resources/
+│   ├── application.properties  
+│   ├── pom.xml
+│
+└── frontend/                  # React + Vite admin dashboard
+    ├── src/
+    ├── public/
+    ├── index.html
+    ├── package.json
+
+⚙️ Tech Stack
+Backend
+Feature	Technologies
+API Framework	Spring Boot (Java 17+)
+ORM	JPA, Hibernate
+Database	Oracle / MySQL
+Messaging	WebSocket, STOMP, SockJS
+AI	Gemini 2.5 Flash API
+Payment	Razorpay Java SDK + Payment Webhooks
+REST Client	RestTemplate
+Frontend
+Feature	Technologies
+Framework	React JS (Vite)
+Styling	Tailwind CSS
+Charts	Recharts
+Notifications	React-Toastify
+Real-time	SockJS + STOMP.js
+Icons	Lucide-React
+Files	react-csv
+🚀 Key Features
+✅ WhatsApp Chatbot
+
+Conversational ordering flow
+
+Menu queries
+
+Order tracking using:
+status <OrderID>
+
+Context-aware AI behavior
+
+Auto session expiry (10 minutes)
+
+Cancel order anytime using “Cancel”
+
+✅ Gemini AI Integration
+
+Intelligent replies
+
+Menu-aware AI
+
+Strict rules to avoid hallucinations
+
+Friendly conversational tone
+
+Dynamic AI insights for admin dashboard
+(Based on analytics + real data)
+
+✅ Razorpay Payment Integration
+
+Dynamic payment link generation
+
+Webhook-based confirmation
+
+Duplicate webhook protection
+
+Auto payment failure handling
+
+Automatic WhatsApp notification on success/failure
+
+✅ Admin Dashboard (React)
+
+Real-time live incoming orders
+
+Order details modal
+
+Status updates (Pending → Accepted → Preparing → Completed)
+
+Monthly analytics table
+
+Payment finance statistics
+
+CSV export
+
+AI business insights panel
+
+Menu management (add/edit/delete/toggle availability)
+
+✅ Real-Time WebSocket Updates
+
+No refresh required
+
+Instant updates across all admin panels
+
+Notification sound + toast alert
+
+Efficient STOMP messaging over SockJS
+
+🧠 System Architecture
+
+(Based on diagrams from documentation page images )
+
+1. User Flow
+
+Customer messages restaurant on WhatsApp
+
+Webhook → Spring Boot receives message
+
+Gemini AI or order flow responds
+
+Payment link generated if needed
+
+Webhook from Razorpay updates backend
+
+Backend broadcasts order updates
+
+Admin dashboard updates instantly via WebSocket
+
+📞 WhatsApp Cloud API Configuration
+Set in application.properties:
+whatsapp.phoneNumberId=YOUR_PHONE_NUMBER_ID
+whatsapp.accessToken=YOUR_PERMANENT_ACCESS_TOKEN
+
+Webhook URL example:
+https://<your-public-url>/webhook
+
+
+Use ngrok or Cloudflare Tunnel to expose local server.
+
+🔑 Required Third-Party Keys
+Service	What You Need	Where to Get
+WhatsApp Cloud API	Phone Number ID, Permanent Token	Meta Developer Portal
+Razorpay	Key ID, Key Secret, Webhook URL	Razorpay Dashboard
+Gemini AI	API Key	Google AI Studio
+⚙️ Backend Setup (Spring Boot)
+1. Go to backend directory
+cd backend
+
+2. Update database configs
+spring.datasource.url=...
+spring.datasource.username=...
+spring.datasource.password=...
+spring.jpa.hibernate.ddl-auto=update
+
+3. Run application
+mvn spring-boot:run
+
+4. Start ngrok/cloudflare tunnel
+ngrok http 8080
+
+🎨 Frontend Setup (React Vite)
+1. Go to frontend directory
+cd frontend
+
+2. Install dependencies
+npm install
+
+3. Start dev server
+npm run dev
+
+Frontend runs on:
+http://localhost:5173
+
+📡 WebSocket Endpoints
+Backend
+/ws              # WebSocket endpoint
+/topic/orders    # Broadcast channel
+
+Frontend (React)
+const socket = new SockJS("http://localhost:8080/ws");
+const stomp = Stomp.over(socket);
+
+stomp.connect({}, () => {
+   stomp.subscribe("/topic/orders", msg => {
+      const data = JSON.parse(msg.body);
+      setOrders(prev => [data, ...prev]);
+   });
+});
+
+💳 Razorpay Webhook
+
+Set your webhook to:
+
+https://your-domain/api/payment/callback
+
+
+Handles:
+
+payment_link.paid
+
+payment_link.failed
+
+payment.captured
+
+payment.failed
+
+📊 Admin Dashboard Features
+Analytics
+
+Monthly summary
+
+Revenue, order count
+
+Avg Order Value
+
+Cash/UPI/Card split
+
+AI insights generated by Gemini
+
+Menu Management
+
+Add / Edit / Delete items
+
+Toggle item availability
+
+Auto-refresh UI
+
+Search filter
+
+Toast notifications
+
+🧩 Folder Structure (Detailed)
+Backend
+backend/
+ ├── controller/
+ ├── service/
+ ├── repository/
+ ├── model/
+ ├── config/
+ ├── WebSocketConfig.java
+ ├── RazorpayConfig.java
+ ├── GoogleApiConfig.java
+ └── WhatsAppController.java
+
+Frontend
+frontend/
+ ├── src/
+ │   ├── components/
+ │   ├── pages/
+ │   ├── charts/
+ │   ├── websocket/
+ │   ├── utils/
+ │   ├── App.jsx
+ │   └── main.jsx
+ └── public/
+
+🧪 Testing Your Bot
+
+Run backend
+
+Run frontend
+
+Open WhatsApp → message your WhatsApp Business number
+
+Try the following:
+
+Order
+Cancel
+2 biryani
+status 41
+menu
+
+
+Make a payment and watch dashboard update in real-time.
+
+
+
+🧠 Why Custom Build?
+
+→ From PDF “Motivation for Custom Build” (Page 1)
+
+Full control over backend & AI logic
+
+Enterprise-grade scalability
+
+No limits like n8n/Zapier
+
+Security & data ownership
+
+Better developer learning & depth
+
+Avoids vendor lock-in
+
+🤝 Contributing
+
+PRs and feature improvements are welcome!
+
+📄 License
+
+This project is fully open for educational and portfolio use.
