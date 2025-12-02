@@ -38,38 +38,45 @@ This is a complete production-grade system that automates restaurant order manag
 
 ⚙️ Tech Stack
 Backend
-Feature	Technologies
-API Framework	Spring Boot (Java 17+)
-ORM	JPA, Hibernate
-Database	Oracle / MySQL
-Messaging	WebSocket, STOMP, SockJS
-AI	Gemini 2.5 Flash API
-Payment	Razorpay Java SDK + Payment Webhooks
-REST Client	RestTemplate
+| Feature       | Technologies                         |
+| ------------- | ------------------------------------ |
+| API Framework | Spring Boot (Java 17+)               |
+| ORM           | JPA, Hibernate                       |
+| Database      | Oracle / MySQL                       |
+| Messaging     | WebSocket, STOMP, SockJS             |
+| AI            | Gemini 2.5 Flash API                 |
+| Payment       | Razorpay Java SDK + Payment Webhooks |
+| REST Client   | RestTemplate                         |
+
+
+
 Frontend
-Feature	Technologies
-Framework	React JS (Vite)
-Styling	Tailwind CSS
-Charts	Recharts
-Notifications	React-Toastify
-Real-time	SockJS + STOMP.js
-Icons	Lucide-React
-Files	react-csv
+| Feature       | Technologies      |
+| ------------- | ----------------- |
+| Framework     | React JS (Vite)   |
+| Styling       | Tailwind CSS      |
+| Charts        | Recharts          |
+| Notifications | React-Toastify    |
+| Real-time     | SockJS + STOMP.js |
+| Icons         | Lucide-React      |
+| Files         | react-csv         |
+
+
 🚀 Key Features
 ✅ WhatsApp Chatbot
 
-Conversational ordering flow
+. Conversational ordering flow
 
-Menu queries
+. Menu queries
 
-Order tracking using:
-status <OrderID>
+. Order tracking using:
+. status <OrderID>
 
-Context-aware AI behavior
+. Context-aware AI behavior
 
-Auto session expiry (10 minutes)
+. Auto session expiry (10 minutes)
 
-Cancel order anytime using “Cancel”
+. Cancel order anytime using “Cancel”
 
 ✅ Gemini AI Integration
 
@@ -314,5 +321,7 @@ Avoids vendor lock-in
 PRs and feature improvements are welcome!
 
 📄 License
+
+
 
 This project is fully open for educational and portfolio use.
